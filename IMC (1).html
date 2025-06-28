@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            flex-direction: column;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+        #resultado {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Projeto desenvolvido por Professor Márcio Marques com auxílio do GPT</h1>
+    <div class="container">
+        <h2>Calculadora de IMC</h2>
+        <input type="number" id="peso" placeholder="Digite seu peso (kg)" step="0.1">
+        <input type="number" id="altura" placeholder="Digite sua altura (cm)" step="0.1">
+        <button onclick="calcularIMC()">Calcular</button>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularIMC() {
+            let peso = document.getElementById('peso').value;
+            let altura = document.getElementById('altura').value / 100; // Convertendo cm para metros
+            let resultado = document.getElementById('resultado');
+            
+            if (peso > 0 && altura > 0) {
+                let imc = (peso / (altura * altura)).toFixed(2);
+                let classificacao = '';
+                
+                if (imc < 18.5) classificacao = 'Abaixo do peso';
+                else if (imc < 24.9) classificacao = 'Peso normal';
+                else if (imc < 29.9) classificacao = 'Sobrepeso';
+                else if (imc < 34.9) classificacao = 'Obesidade Grau 1';
+                else if (imc < 39.9) classificacao = 'Obesidade Grau 2';
+                else classificacao = 'Obesidade Grau 3';
+                
+                resultado.innerHTML = `Seu IMC é ${imc} - ${classificacao}`;
+            } else {
+                resultado.innerHTML = 'Por favor, insira valores válidos.';
+            }
+        }
+    </script>
+</body>
+</html>
