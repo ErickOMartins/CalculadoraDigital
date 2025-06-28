@@ -126,28 +126,28 @@
     function calcularFormula1() {
       const peso = parseFloat(document.getElementById('x1').value);
       const altura = parseFloat(document.getElementById('y1').value);
-
+      let resultado = "";
       if (isNaN(peso) || isNaN(altura)) {
         alert("Preencha Peso e Altura com valores válidos.");
         return;
       }
       if (peso > 0 && altura > 0) {
-            let imc = (peso / (altura * altura)).toFixed(2);
-            let classificacao = '';
-            
-            if (imc < 18.5) classificacao = 'Abaixo do peso';
-            else if (imc < 24.9) classificacao = 'Peso normal';
-            else if (imc < 29.9) classificacao = 'Sobrepeso';
-            else if (imc < 34.9) classificacao = 'Obesidade Grau 1';
-            else if (imc < 39.9) classificacao = 'Obesidade Grau 2';
-            else classificacao = 'Obesidade Grau 3';
-                
-                resultado.innerHTML = `Seu IMC é ${imc} - ${classificacao}`;
-            } else {
-                resultado.innerHTML = 'Por favor, insira valores válidos.';
-            }
+          let imc = (peso / (altura * altura)).toFixed(2);
+          let classificacao = '';
+          
+          if (imc < 18.5) classificacao = 'Abaixo do peso';
+          else if (imc < 24.9) classificacao = 'Peso normal';
+          else if (imc < 29.9) classificacao = 'Sobrepeso';
+          else if (imc < 34.9) classificacao = 'Obesidade Grau 1';
+          else if (imc < 39.9) classificacao = 'Obesidade Grau 2';
+          else classificacao = 'Obesidade Grau 3';
+              
+          resultado = `Seu IMC é ${imc} - ${classificacao}`;
+        } else {
+              resultado = 'Por favor, insira valores válidos.';
+        }
       //const resultado = altura !== 0 ? peso / (altura * altura) : "Indefinido (divisão por zero)";
-      document.getElementById('resultado1').textContent = `Resultado: ${resultado}`;
+      document.getElementById('resultado1').textContent = `${resultado}`;
     }
 
     function calcularFormula2() {
