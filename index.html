@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .selector {
+      margin-bottom: 25px;
+    }
+
+    .selector label {
+      margin: 0 15px;
+      font-size: 16px;
+    }
+
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    .calculadora {
+      display: none;
+      transition: all 0.3s ease;
+    }
+
+    .calculadora.ativa {
+      display: block;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      margin: 8px 5px;
+      width: calc(100% - 30px);
+      max-width: 150px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .resultado {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    @media (max-width: 600px) {
+      input[type="number"] {
+        width: 90%;
+        max-width: none;
+      }
+
+      .selector label {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Calculadora de Fórmulas</h1>
+
+    <div class="selector">
+      <label><input type="radio" name="calc" value="1" checked onchange="trocarCalculadora(1)"> I.M.C</label>
+      <label><input type="radio" name="calc" value="2" onchange="trocarCalculadora(2)"> P.F.E</label>
+    </div>
+
+    <!-- Calculadora 1 -->
+    <div class="calculadora ativa" id="calc1">
+      <input type="number" id="x1" placeholder="X" step="any">
+      <input type="number" id="y1" placeholder="Y" step="any">
+      <br>
+      <button onclick="calcularFormula1()">Calcular</button>
+      <div class="resultado" id="resultado1"></div>
+    </div>
+
+    <!-- Calculadora 2 -->
+    <div class="calculadora" id="calc2">
+      <input type="number" id="x2" placeholder="X" step="any">
+      <input type="number" id="y2" placeholder="Y" step="any">
+      <input type="number" id="z2" placeholder="Z" step="any">
+      <br>
+      <button onclick="calcularFormula2()">Calcular</button>
+      <div class="resultado" id="resultado2"></div>
+    </div>
+  </div>
+
+  <script>
+    function trocarCalculadora(num) {
+      document.getElementById('calc1').classList.remove('ativa');
+      document.getElementById('calc2').classList.remove('ativa');
+      document.getElementById('calc' + num).classList.add('ativa');
+    }
+
+    function calcularFormula1() {
+      const x = parseFloat(document.getElementById('x1').value);
+      const y = parseFloat(document.getElementById('y1').value);
+
+      if (isNaN(x) || isNaN(y)) {
+        alert("Preencha X e Y com valores válidos.");
+        return;
+      }
+
+      const resultado = y !== 0 ? x / (y * y) : "Indefinido (divisão por zero)";
+      document.getElementById('resultado1').textContent = `Resultado: ${resultado}`;
+    }
+
+    function calcularFormula2() {
+      const x = parseFloat(document.getElementById('x2').value);
+      const y = parseFloat(document.getElementById('y2').value);
+      const z = parseFloat(document.getElementById('z2').value);
+
+      if (isNaN(x) || isNaN(y) || isNaN(z)) {
+        alert("Preencha X, Y e Z com valores válidos.");
+        return;
+      }
+
+      const resultado = (x + y + z) / 3;
+      document.getElementById('resultado2').textContent = `Resultado: ${resultado}`;
+    }
+  </script>
+
+</body>
+</html>
