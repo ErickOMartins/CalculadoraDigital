@@ -113,6 +113,7 @@
       <br>
       <button onclick="calcularFormula2()">Calcular</button>
       <div class="resultado" id="resultado2"></div>
+      <img id="imagemFormula2" src="image.png" alt="Imagem da Fórmula 2" style="display:none; margin-top:20px; max-width:100%; border-radius:10px;" /> <!-- ADICIONADO -->
     </div>
   </div>
 
@@ -162,6 +163,7 @@
 
       const resultado = (x + y + z) / 3;
       document.getElementById('resultado2').textContent = `Resultado: ${resultado}`;
+      document.getElementById('imagemFormula2').style.display = 'block'; // ADICIONADO
     }
   </script>
 
